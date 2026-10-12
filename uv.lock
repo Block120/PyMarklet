@@ -1,0 +1,15 @@
+version = 1
+revision = 5
+requires-python = ">=3.11"
+
+[[package]]
+name = "pymarklet"
+version = "0.1.0"
+source = { editable = "." }
+default-groups = ["test"]
+
+[package.metadata]
+provides-extras = ["test"]
+
+[package.metadata.requires-dev]
+test = []

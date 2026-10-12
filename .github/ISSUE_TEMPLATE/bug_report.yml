@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible problem with PyMarklet.
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Include the Python source (without secrets), command, browser, and page/CSP details.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: PyMarklet version
+      placeholder: 0.1.0
+    validations:
+      required: true

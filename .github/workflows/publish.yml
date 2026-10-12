@@ -1,0 +1,27 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pymarklet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.11"
+      - run: uv sync
+      - run: uv run python -m unittest discover -s tests -v
+      - run: uv build
+      - run: uvx twine check dist/*
+      - uses: pypa/gh-action-pypi-publish@release/v1

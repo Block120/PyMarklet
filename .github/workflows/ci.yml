@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+      - run: uv sync
+      - run: uv run python -m unittest discover -s tests -v
+
+  package:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.11"
+          enable-cache: true
+      - run: uv build
+      - run: uvx twine check dist/*
+      - run: uv venv --clear .venv-wheel
+      - run: uv pip install --python .venv-wheel/bin/python dist/*.whl
+      - run: .venv-wheel/bin/python -c "import pymarklet; print(pymarklet.__version__)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-distributions
+          path: dist/
