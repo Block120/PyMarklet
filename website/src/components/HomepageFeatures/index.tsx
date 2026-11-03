@@ -9,34 +9,79 @@ type FeatureItem = {
   description: ReactNode;
 };
 
+const TerminalIcon = (props: React.ComponentProps<'svg'>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="3" y="4" width="18" height="16" rx="2" />
+    <path d="m7 9 3 3-3 3" />
+    <path d="M13 15h4" />
+  </svg>
+);
+
+const BrowserIcon = (props: React.ComponentProps<'svg'>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="2.5" y="4" width="19" height="16" rx="2" />
+    <path d="M2.5 8.5h19" />
+    <circle cx="5.5" cy="6.25" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="8" cy="6.25" r="0.75" fill="currentColor" stroke="none" />
+    <path d="m9 12-2 2 2 2M15 12l2 2-2 2M13 11l-2 6" />
+  </svg>
+);
+
+const PackageIcon = (props: React.ComponentProps<'svg'>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m12 3 9 4.5v9L12 21l-9-4.5v-9z" />
+    <path d="M3 7.5 12 12l9-4.5M12 12v9" />
+    <path d="m7.5 5.25 9 4.5" />
+  </svg>
+);
+
+const CanvasIcon = (props: React.ComponentProps<'svg'>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="2.5" y="4" width="19" height="14" rx="2" />
+    <path d="M9 22h6M12 18v4" />
+    <circle cx="8" cy="9" r="1.25" />
+    <path d="m4.5 16 4.5-4 3 2.5L15 11l4.5 5" />
+  </svg>
+);
+
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'One command',
+    Svg: TerminalIcon,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Point <code>pymarklet</code> at a Python file and get a{' '}
+        <code>javascript:</code> URL. No extension, server, or config file.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Python in the browser',
+    Svg: BrowserIcon,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Your source is embedded in the bookmark and runs with Pyodide 0.27.5 in
+        WebAssembly on any page you trust.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Dependencies handled',
+    Svg: PackageIcon,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Imports are detected, Pyodide packages are loaded, and missing
+        distributions can be installed from PyPI at runtime.
+      </>
+    ),
+  },
+  {
+    title: 'Graphics-ready',
+    Svg: CanvasIcon,
+    description: (
+      <>
+        A wired-up canvas lets Pygame and other canvas-aware libraries draw
+        inside the draggable output panel.
       </>
     ),
   },
@@ -44,9 +89,9 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3', styles.feature)}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <Svg className={styles.featureSvg} role="img" aria-hidden="true" />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>

@@ -1,5 +1,5 @@
 # Read the Docs configuration file
-# See https://readthedocs.io for details
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 version: 2
 
@@ -8,9 +8,10 @@ build:
   tools:
     nodejs: "22"
 
+  # Docusaurus is not a Sphinx project, so build it with custom commands and
+  # publish the generated static site from $READTHEDOCS_OUTPUT.
   commands:
-    # Changed from docs to website
-    - cd website && npm install
+    - cd website && npm ci
     - cd website && npm run build
-    - mkdir --parents $READTHEDOCS_OUTPUT/html/
-    - cp --recursive website/build/* $READTHEDOCS_OUTPUT/html/
+    - mkdir --parents "$READTHEDOCS_OUTPUT/html/"
+    - cp --recursive website/build/. "$READTHEDOCS_OUTPUT/html/"

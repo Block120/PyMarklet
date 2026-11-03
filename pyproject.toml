@@ -31,6 +31,7 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/Block120/PyMarklet"
+Documentation = "https://pymarklet.readthedocs.io/"
 Repository = "https://github.com/Block120/PyMarklet"
 Issues = "https://github.com/Block120/PyMarklet/issues"
 Changelog = "https://github.com/Block120/PyMarklet/releases"

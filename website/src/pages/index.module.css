@@ -20,4 +20,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.installSnippet {
+  max-width: 32rem;
+  margin: 2rem auto 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #f8fafc;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.installSnippet code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 0;
+  font-size: 0.95rem;
 }

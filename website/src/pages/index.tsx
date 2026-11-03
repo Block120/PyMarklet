@@ -20,10 +20,18 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs/getting-started/installation">
+            Get started
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/getting-started/quickstart">
+            Quick start
           </Link>
         </div>
+        <pre className={styles.installSnippet}>
+          <code>python -m pip install pymarklet</code>
+        </pre>
       </div>
     </header>
   );
@@ -33,8 +41,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={siteConfig.title}
+      description="Generate a browser bookmarklet that runs a Python script with Pyodide.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

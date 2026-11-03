@@ -6,6 +6,8 @@
 
 Generate a browser bookmarklet that runs a Python script with [Pyodide](https://pyodide.org/). The generated bookmarklet adds a draggable output panel to the current page, loads Python in WebAssembly, and runs your embedded script in the browser.
 
+**Documentation:** <https://pymarklet.readthedocs.io/>
+
 > **Experimental:** PyMarklet executes code in the context of the web page where the bookmarklet is activated. Read the [Security and privacy](#security-and-privacy) section before sharing or running a bookmarklet.
 
 ## Installation
@@ -111,6 +113,17 @@ uv sync
 uv run python -m unittest discover -s tests -v
 uv build
 ```
+
+To work on the documentation site:
+
+```sh
+cd website
+npm ci
+npm run start
+```
+
+The site is built with Docusaurus and deployed through Read the Docs; see
+[`website/README.md`](website/README.md).
 
 Contributions are welcome; see [`CONTRIBUTING.md`](CONTRIBUTING.md). This project is licensed under the [MIT License](LICENSE).
 
