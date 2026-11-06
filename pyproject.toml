@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "pymarklet"
-version = "0.1.0"
+version = "0.2.0"
 description = "Generate browser bookmarklets that run Python with Pyodide."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -30,7 +30,7 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/Block120/PyMarklet"
+Homepage = "https://pymarklet.readthedocs.io/"
 Documentation = "https://pymarklet.readthedocs.io/"
 Repository = "https://github.com/Block120/PyMarklet"
 Issues = "https://github.com/Block120/PyMarklet/issues"
